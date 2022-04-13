@@ -1,0 +1,88 @@
+﻿* 
+{
+    margin: 0;
+    padding: 0;
+}
+/* Links Code */
+a 
+{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
+a:hover, a:focus 
+{
+    color: #f7e6ff;
+    background-color: #000000;
+}
+/* Header Settings Code */
+header 
+{
+    display: block;
+    border-bottom: 3px solid #282a35;
+    background-color: white;
+}
+header h1 
+{
+    padding: .6em 3em;
+    font-size: 250%;
+}
+header img
+{
+    float: left;
+    padding-left: 2em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    max-height: 5em;
+}
+/* Navigation Settings Code */
+nav ul 
+{
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-evenly;
+    list-style-type: none;
+    position: relative;
+    background-color: #282a35;
+    color: white;
+}
+nav ul li { flex-basis: 20%; }
+nav ul li a 
+{
+    display: block;
+    padding: 1em 0em 1em 0em;
+
+}
+/* Body/Main Setting Code*/
+main 
+{
+    display: flex;
+    padding-left: 18px;
+    padding-bottom: 18px;
+    padding-right: 18px;
+}
+main p
+{
+    font-size: 110%;
+}
+main h2
+{
+    font-size: 175%;
+    color: purple;
+    padding-top: 12px;
+}
+/* Section Setting Code */
+section { max-width: 475px; }
+/* Footer Settings Code */
+footer
+{
+    clear: both;
+    background-color: purple;
+}
+footer p 
+{
+    padding: .6em 1em;
+    text-align: center;
+    color: white;
+}
