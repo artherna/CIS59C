@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <link rel="shortcut icon" href="images/wine_glasses_icon.png">
+    <link rel="stylesheet" href="styles/main.css">
     <style>
         /* Set the size of the div element that contains the map */
         #map {
@@ -12,6 +14,18 @@
 </head>
 
 <body>
+    <header>
+        <img src="images/wine_glasses_icon.png" alt="Wine Glasses Icon" height="100">
+        <h1>Livermore Wineries</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="wineries.html">Wineries</a></li>
+            <li><a href="navigator.html">Navigation</a></li>
+            <li><a href="reservation.html">Reservation</a></li>
+        </ul>
+    </nav>
     <!--The div elements for the map and message -->
     <div id="map"></div>
     <div id="msg"></div>
@@ -108,8 +122,11 @@
     </script>
     <!--Load the API from the specified URL -- remember to replace YOUR_API_KEY-->
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=<YOUR_API_KEY-->&callback=initMap&libraries=places&v=weekly">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsRWvggHgfducouDfiGACfupgqk_o_IAQ&callback=initMap&libraries=places&v=weekly">
         </script>
+    <footer>
+        <p>&copy; 2022 Livermore Valley Winegrowers Association. Responsive Web Design by Group 2</p>
+    </footer>
 </body>
 
 </html>
