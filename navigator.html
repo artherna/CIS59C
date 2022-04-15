@@ -22,8 +22,19 @@
         </ul>
     </nav>
     <!--The div elements for the map and message -->
-    <div id="map"></div>
-    <div id="msg"></div>
+    <table>
+        <tr>
+            <td>
+                <div id="map"></div>
+                <div id="msg"></div>
+            </td>
+            <td>
+                <div id="wineries">
+                    
+                </div>
+            </td>
+        </tr>
+    </table>
     <!--Load the API from the specified URL -- remember to replace YOUR_API_KEY-->
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsRWvggHgfducouDfiGACfupgqk_o_IAQ&callback=initMap&libraries=places&v=weekly">

@@ -1,7 +1,21 @@
-// Initialize and add the map
+var $ = function (id) {
+    return document.getElementById(id);
+}
+
 var map;
 let infowindow;
 let markers = []
+let wineries = ["3 Steves Winery", "Almost Famous Wine Company", "Arroyo Cellars", "Bent Creek Winery",
+    "Big White House Winery", "BoaVentura de Caires Winery", "Bodegas Aguirre Winery", "Caddis Winery",
+    "Cedar Mountain Winery & Port Works", "Charles R Vineyards", "Concannon Vineyard", "Crooked Vine Winery",
+    "Cuda Ridge Wines", "Dante Robere Vineyards", "Darcie Kent Vineyards", "Del Valle Winery", "Eagle Ridge Vineyard",
+    "Ehrenberg Cellars", "el Sol Winery", "Favalora Vineyards Winery", "Fenestra Winery", "Free Range Flower Winery",
+    "Garre' Vineyard and Winery", "Las Positas Vineyards", "Leisure Street Winery", "Longevity Wines", "McGrail Vineyards and Winery",
+    "Mitchell Katz Winery", "Murrieta's Well", "Nottingham Cellars", "Occasio Winery", "Omega Road Winery", "Page Mill Winery",
+    "Paulsen Wines", "Retzlaff Vineyards and Estate Winery", "Rios-Lovell Winery", "Rodrigue Molyneaux Winery", "Rosa Fierro Cellars",
+    "The Lineage Collection - Home of Steven Kent Winery, Lineage Wine Co., L'Autre Cote & Mia Nipote", "The Singing Winemaker",
+    "Wente Vineyards Tasting Lounge", "Wood Family Vineyards"];
+
 function initMap() {
     // The map, centered on Livermore
     var livermore = new google.maps.LatLng(37.661888, -121.718930);
@@ -10,10 +24,10 @@ function initMap() {
     const options = { zoom: 13, scaleControl: true, center: livermore };
     infowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.getElementById('map'), options);
-    let search = ['Wente Vineyard', 'Mitchel Katz Winery', "Murrieta's Well", 'Concannon Vineyard'];
+    //let search = ['Wente Vineyard', 'Mitchel Katz Winery', "Murrieta's Well", 'Concannon Vineyard'];
     let complete = false
     console.log("About to Search")
-    search.forEach(element => {
+    wineries.forEach(element => {
         console.log("Searching")
         var request = {
             query: element,
@@ -31,7 +45,7 @@ function initMap() {
                     createMarker(results[i]);
                 }
                 map.setCenter(results[0].geometry.location);
-                if (element == search[search.length - 1]) {
+                if (element == wineries[wineries.length - 1]) {
                     complete = true
                 }
             }
@@ -42,7 +56,6 @@ function initMap() {
     function createMarker(place) {
         if (!place.geometry || !place.geometry.location) return;
 
-        console.log("Creating Markers")
         const marker = new google.maps.Marker({
             map,
             position: place.geometry.location,
@@ -84,10 +97,71 @@ function initMap() {
                 });
         });
     }
-    console.log("Getting Directions")
 }
-console.log("test")
 
-window.onload = function() {
-    initMap
+var resetCheckBox = function () {
+    $("wineries").childNodes.forEach(element => {
+        if (element.nodeName == "INPUT") {
+            if (element.type == "checkbox" && element.checked) {
+                element.checked = false
+            }
+        }
+    });
+}
+
+var genCheckboxField = function () {
+    let l1 = document.createElement("label")
+    l1.innerHTML = "Winery List"
+    $("wineries").appendChild(l1);
+    $("wineries").appendChild(document.createElement('br'));
+    let count = 0;
+    displayTable = document.createElement("table");
+    displayTable.setAttribute("class", "DisplayTable");
+    let newDataRow = displayTable.insertRow(-1)
+    let t = []
+    t.push(newDataRow)
+    wineries.forEach(element => {
+        if(count % 12 !=0 && count < 13){
+            newDataRow = displayTable.insertRow(-1)
+            t.push(newDataRow)
+        }
+
+        newDataCell = t[count%12].insertCell(-1)
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `w${count}`;
+        checkbox.name = `w${count}`;
+        checkbox.value = element;
+
+        var label = document.createElement('label')
+        label.htmlFor = `w${count}`;
+        label.appendChild(document.createTextNode(element));
+
+        newDataCell.appendChild(checkbox);
+        newDataCell.appendChild(label);
+        //newDataCell.appendChild(document.createElement('br'));
+        //$("wineries").appendChild(checkbox);
+        //$("wineries").appendChild(label);
+        //$("wineries").appendChild(document.createElement('br'));
+        count += 1
+    });
+    $("wineries").appendChild(displayTable);
+    var button = document.createElement('input');
+    button.type = "button"
+    button.id = "navigate";
+    button.value = "Calculate Route"
+    $("wineries").appendChild(button);
+    //$("navigate").onclick = calculatetrack;
+
+    button = document.createElement('input');
+    button.type = "button"
+    button.id = "reset";
+    button.value = "Reset"
+    $("wineries").appendChild(button);
+    $("reset").onclick = resetCheckBox;
+}
+
+window.onload = function () {
+    genCheckboxField()
+    initMap()
 }
