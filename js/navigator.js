@@ -27,6 +27,7 @@ let wineries = [{ name: 'Boa Ventura De Caires Winery', lat: 37.6622242, lng: -1
 { name: 'Page Mill Winery', lat: 37.6691513, lng: -121.7459135 }, { name: 'Wente Vineyards Tasting Lounge', lat: 37.6233946, lng: -121.7560431 },
 { name: 'Wood Family Vineyards', lat: 37.6753661, lng: -121.7200067 }];
 
+
 //Initialize the map using Google Maps API
 function initMap() {
     // The map, centered on Livermore
@@ -102,6 +103,7 @@ var resetCheckBox = function () {
         }
     }
 }
+
 
 // helper function to add/remove options from menus dynamically
 var addRemoveOptions = function (select, remove, value) {
