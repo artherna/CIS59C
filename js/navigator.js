@@ -5,16 +5,27 @@ var $ = function (id) {
 var map;
 let infowindow;
 let markers = []
-let wineries = ["3 Steves Winery", "Almost Famous Wine Company", "Arroyo Cellars", "Bent Creek Winery",
-    "Big White House Winery", "BoaVentura de Caires Winery", "Bodegas Aguirre Winery", "Caddis Winery",
-    "Cedar Mountain Winery & Port Works", "Charles R Vineyards", "Concannon Vineyard", "Crooked Vine Winery",
-    "Cuda Ridge Wines", "Dante Robere Vineyards", "Darcie Kent Vineyards", "Del Valle Winery", "Eagle Ridge Vineyard",
-    "Ehrenberg Cellars", "el Sol Winery", "Favalora Vineyards Winery", "Fenestra Winery", "Free Range Flower Winery",
-    "Garre' Vineyard and Winery", "Las Positas Vineyards", "Leisure Street Winery", "Longevity Wines", "McGrail Vineyards and Winery",
-    "Mitchell Katz Winery", "Murrieta's Well", "Nottingham Cellars", "Occasio Winery", "Omega Road Winery", "Page Mill Winery",
-    "Paulsen Wines", "Retzlaff Vineyards and Estate Winery", "Rios-Lovell Winery", "Rodrigue Molyneaux Winery", "Rosa Fierro Cellars",
-    "The Lineage Collection - Home of Steven Kent Winery, Lineage Wine Co., L'Autre Cote & Mia Nipote", "The Singing Winemaker",
-    "Wente Vineyards Tasting Lounge", "Wood Family Vineyards"];
+let wineries = [{ name: 'Boa Ventura De Caires Winery', lat: 37.6622242, lng: -121.6751873 }, { name: '3 Steves Winery', lat: 37.6485433, lng: -121.694541 },
+{ name: 'Bodegas Aguirre Winery', lat: 37.6670238, lng: -121.6890554 }, { name: 'Charles R Vineyards', lat: 37.6449445, lng: -121.6933311 },
+{ name: 'Bent Creek Winery', lat: 37.6500151, lng: -121.7021226 }, { name: 'Caddis Winery', lat: 37.6542616, lng: -121.6976399 },
+{ name: 'Arroyo Cellars', lat: 37.6764002, lng: -121.7213251 }, { name: 'Big White House Winery and John Evan Cellars', lat: 37.64711, lng: -121.6957399 },
+{ name: 'Cedar Mountain Winery', lat: 37.6612418, lng: -121.6588128 }, { name: 'Almost Famous Wine', lat: 37.6760742, lng: -121.7193931 },
+{ name: 'Ehrenberg Cellars', lat: 37.6972639, lng: -121.8154042 }, { name: 'Concannon Vineyard', lat: 37.6670827, lng: -121.7397954 },
+{ name: 'Darcie Kent Vineyards', lat: 37.6659675, lng: -121.7061218 }, { name: 'Cuda Ridge Wines', lat: 37.6547921, lng: -121.7668362 },
+{ name: 'Del Valle Winery', lat: 37.6658241, lng: -121.7336671 }, { name: 'Eagle Ridge Vineyard', lat: 37.653502, lng: -121.672361 },
+{ name: 'Favalora Vineyards Winery', lat: 37.6764357, lng: -121.7191618 }, { name: 'El Sol', lat: 37.6879021, lng: -121.6875288 },
+{ name: 'Crooked Vine Vineyard and Winery', lat: 45.429022, lng: -84.773046 }, { name: 'Dante Robere Vineyards', lat: 37.6456844, lng: -121.7821115 },
+{ name: 'Fenestra Winery', lat: 37.6418073, lng: -121.7959684 }, { name: 'Mitchell Katz Winery', lat: 37.666449, lng: -121.719954 },
+{ name: 'McGrail Vineyards and Winery', lat: 37.6503411, lng: -121.6950897 }, { name: 'Longevity Wines Inc', lat: 37.6759437, lng: -121.7192298 },
+{ name: 'Las Positas Vineyards', lat: 37.6458024, lng: -121.7704979 }, { name: 'Leisure Street Winery', lat: 37.66257, lng: -121.683039 },
+{ name: 'Nottingham Cellars - Livermore Winery and Wine Tasting', lat: 37.6765212, lng: -121.7192675 }, { name: "Murrieta's Well", lat: 37.659, lng: -121.73449 },
+{ name: 'Garré Vineyard Restaurant & Event Center', lat: 37.6657331, lng: -121.6979142 }, { name: 'Rios-Lovell Winery', lat: 37.6663853, lng: -121.7145094 },
+{ name: 'Rodrigue Molyneaux Winery', lat: 37.6544685, lng: -121.7573462 }, { name: 'Rosa Fierro Cellars', lat: 37.6764, lng: -121.7193616 },
+{ name: 'Omega Road Winery', lat: 37.6772196, lng: -121.7194014 }, { name: 'Retzlaff Vineyards', lat: 37.6724055, lng: -121.7532201 },
+{ name: 'Occasio Winery', lat: 37.6764513, lng: -121.7195675 }, { name: 'The Singing Winemaker', lat: 37.6649648, lng: -121.731373 },
+{ name: 'Paulsen Wines', lat: 37.6646371, lng: -121.7310154 }, { name: 'The Lineage Wine Collection', lat: 37.664289, lng: -121.728086 },
+{ name: 'Page Mill Winery', lat: 37.6691513, lng: -121.7459135 }, { name: 'Wente Vineyards Tasting Lounge', lat: 37.6233946, lng: -121.7560431 },
+{ name: 'Wood Family Vineyards', lat: 37.6753661, lng: -121.7200067 }];
 
 function initMap() {
     // The map, centered on Livermore
@@ -27,46 +38,18 @@ function initMap() {
     //let search = ['Wente Vineyard', 'Mitchel Katz Winery', "Murrieta's Well", 'Concannon Vineyard'];
     let complete = false
     console.log("About to Search")
-    let count =0
+    let count = 0
     wineries.forEach(element => {
-        if(count > 5){
-		count += 1
-		return;
-	}
-	count+=1
-	console.log(`Searching ${element}`)
-	
-        var request = {
-            query: element,
-            //location: livermore,
-            //radius: '1000',
-            fields: ['name', 'geometry'],
-        };
-
-        var service = new google.maps.places.PlacesService(map);
-
-        service.findPlaceFromQuery(request, function (results, status) {
-            //service.nearbySearch(request, function(results, status) {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                for (var i = 0; i < results.length; i++) {
-                    console.log(`${results[i].name}:${results[i].geometry.location.lat()}:${results[i].geometry.location.lng()}`);
-                    createMarker(results[i]);
-                }
-                map.setCenter(results[0].geometry.location);
-                if (element == wineries[wineries.length - 1]) {
-                    complete = true
-                }
-            }
-        });
+        createMarker(element);
     });
 
 
     function createMarker(place) {
-        if (!place.geometry || !place.geometry.location) return;
+        //if (!place.geometry || !place.geometry.location) return;
 
         const marker = new google.maps.Marker({
             map,
-            position: place.geometry.location,
+            position: { lat: place.lat, lng: place.lng },
         });
         markers.push(marker);
         google.maps.event.addListener(marker, "click", () => {
@@ -111,8 +94,23 @@ var resetCheckBox = function () {
     for (let i = 0; i < wineries.length; i++) {
         if ($(`w${i}`).checked) {
             $(`w${i}`).checked = false
+            addRemoveOptions("start", true, $(`w${i}`).value)
+            addRemoveOptions("end", true, $(`w${i}`).value)
+            addRemoveOptions("waypoints", true, $(`w${i}`).value)
         }
     }
+}
+
+var addRemoveOptions = function (select, remove, value) {
+    if (!select) return;
+    if (remove) {
+        for (var i = 0; i < $(select).length; i++) {
+            if ($(select).options[i].value == value)
+                $(select).remove(i);
+        }
+        return
+    }
+    $(select).add(new Option(value));
 }
 
 var genCheckboxField = function () {
@@ -138,11 +136,22 @@ var genCheckboxField = function () {
         checkbox.type = 'checkbox';
         checkbox.id = `w${count}`;
         checkbox.name = `w${count}`;
-        checkbox.value = element;
+        checkbox.value = element.name;
+        checkbox.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                addRemoveOptions("start", false, checkbox.value)
+                addRemoveOptions("end", false, checkbox.value)
+                addRemoveOptions("waypoints", false, checkbox.value)
+            } else {
+                addRemoveOptions("start", true, checkbox.value)
+                addRemoveOptions("end", true, checkbox.value)
+                addRemoveOptions("waypoints", true, checkbox.value)
+            }
+        })
 
         var label = document.createElement('label')
         label.htmlFor = `w${count}`;
-        label.appendChild(document.createTextNode(element));
+        label.appendChild(document.createTextNode(element.name));
 
         newDataCell.appendChild(checkbox);
         newDataCell.appendChild(label);
