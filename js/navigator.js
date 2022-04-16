@@ -108,13 +108,11 @@ function initMap() {
 }
 
 var resetCheckBox = function () {
-    $("wineries").childNodes.forEach(element => {
-        if (element.nodeName == "INPUT") {
-            if (element.type == "checkbox" && element.checked) {
-                element.checked = false
-            }
+    for (let i = 0; i < wineries.length; i++) {
+        if ($(`w${i}`).checked) {
+            $(`w${i}`).checked = false
         }
-    });
+    }
 }
 
 var genCheckboxField = function () {
@@ -124,17 +122,18 @@ var genCheckboxField = function () {
     $("wineries").appendChild(document.createElement('br'));
     let count = 0;
     displayTable = document.createElement("table");
+    displayTable.id = "displaytable"
     displayTable.setAttribute("class", "DisplayTable");
     let newDataRow = displayTable.insertRow(-1)
     let t = []
     t.push(newDataRow)
     wineries.forEach(element => {
-        if(count % 12 !=0 && count < 13){
+        if (count % 12 != 0 && count < 13) {
             newDataRow = displayTable.insertRow(-1)
             t.push(newDataRow)
         }
 
-        newDataCell = t[count%12].insertCell(-1)
+        newDataCell = t[count % 12].insertCell(-1)
         var checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = `w${count}`;
@@ -147,10 +146,6 @@ var genCheckboxField = function () {
 
         newDataCell.appendChild(checkbox);
         newDataCell.appendChild(label);
-        //newDataCell.appendChild(document.createElement('br'));
-        //$("wineries").appendChild(checkbox);
-        //$("wineries").appendChild(label);
-        //$("wineries").appendChild(document.createElement('br'));
         count += 1
     });
     $("wineries").appendChild(displayTable);
