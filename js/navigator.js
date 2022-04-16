@@ -27,6 +27,8 @@ let wineries = [{ name: 'Boa Ventura De Caires Winery', lat: 37.6622242, lng: -1
 { name: 'Page Mill Winery', lat: 37.6691513, lng: -121.7459135 }, { name: 'Wente Vineyards Tasting Lounge', lat: 37.6233946, lng: -121.7560431 },
 { name: 'Wood Family Vineyards', lat: 37.6753661, lng: -121.7200067 }];
 
+
+//Initialize the map using Google Maps API
 function initMap() {
     // The map, centered on Livermore
     var livermore = new google.maps.LatLng(37.661888, -121.718930);
@@ -90,6 +92,7 @@ function initMap() {
     }
 }
 
+//Reset all the checkboxs and drop down options
 var resetCheckBox = function () {
     for (let i = 0; i < wineries.length; i++) {
         if ($(`w${i}`).checked) {
@@ -101,6 +104,8 @@ var resetCheckBox = function () {
     }
 }
 
+
+// helper function to add/remove options from menus dynamically
 var addRemoveOptions = function (select, remove, value) {
     if (!select) return;
     if (remove) {
@@ -113,30 +118,34 @@ var addRemoveOptions = function (select, remove, value) {
     $(select).add(new Option(value));
 }
 
+// Generate all the checkboxes from the winery list
 var genCheckboxField = function () {
     let l1 = document.createElement("label")
     l1.innerHTML = "Winery List"
     $("wineries").appendChild(l1);
     $("wineries").appendChild(document.createElement('br'));
     let count = 0;
-    displayTable = document.createElement("table");
+    displayTable = document.createElement("table"); // Create the new Table to store winery options
     displayTable.id = "displaytable"
     displayTable.setAttribute("class", "DisplayTable");
     let newDataRow = displayTable.insertRow(-1)
     let t = []
     t.push(newDataRow)
     wineries.forEach(element => {
+        // only create a row if there are less than 13 rows in the table lets you divide up winery options in columns of 12
         if (count % 12 != 0 && count < 13) {
             newDataRow = displayTable.insertRow(-1)
             t.push(newDataRow)
         }
 
-        newDataCell = t[count % 12].insertCell(-1)
+        newDataCell = t[count % 12].insertCell(-1) // create the table cell
         var checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
+        checkbox.type = 'checkbox'; // create the checkbox and its options
         checkbox.id = `w${count}`;
         checkbox.name = `w${count}`;
         checkbox.value = element.name;
+
+        // add a listener to each checkbox. when its changed add/remove it to the dropdown elements
         checkbox.addEventListener('change', (event) => {
             if (event.currentTarget.checked) {
                 addRemoveOptions("start", false, checkbox.value)
@@ -153,10 +162,12 @@ var genCheckboxField = function () {
         label.htmlFor = `w${count}`;
         label.appendChild(document.createTextNode(element.name));
 
-        newDataCell.appendChild(checkbox);
+        newDataCell.appendChild(checkbox);// add checkbox and label to the table cell
         newDataCell.appendChild(label);
         count += 1
     });
+
+    //create the buttons for reset,calculate route and add all elements to the DOM
     $("wineries").appendChild(displayTable);
     var button = document.createElement('input');
     button.type = "button"
