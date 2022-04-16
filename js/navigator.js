@@ -27,8 +27,15 @@ function initMap() {
     //let search = ['Wente Vineyard', 'Mitchel Katz Winery', "Murrieta's Well", 'Concannon Vineyard'];
     let complete = false
     console.log("About to Search")
+    let count =0
     wineries.forEach(element => {
-        console.log("Searching")
+        if(count > 5){
+		count += 1
+		return;
+	}
+	count+=1
+	console.log(`Searching ${element}`)
+	
         var request = {
             query: element,
             //location: livermore,
@@ -42,6 +49,7 @@ function initMap() {
             //service.nearbySearch(request, function(results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
+                    console.log(`${results[i].name}:${results[i].geometry.location.lat()}:${results[i].geometry.location.lng()}`);
                     createMarker(results[i]);
                 }
                 map.setCenter(results[0].geometry.location);
@@ -163,5 +171,5 @@ var genCheckboxField = function () {
 
 window.onload = function () {
     genCheckboxField()
-    initMap()
+    //initMap()
 }
