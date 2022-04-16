@@ -150,11 +150,11 @@ var genCheckboxField = function () {
         checkbox.type = 'checkbox';
         checkbox.id = `w${count}`;
         checkbox.name = `w${count}`;
-        checkbox.value = element;
+        checkbox.value = element.name;
 
         var label = document.createElement('label')
         label.htmlFor = `w${count}`;
-        label.appendChild(document.createTextNode(element));
+        label.appendChild(document.createTextNode(element.name));
 
         newDataCell.appendChild(checkbox);
         newDataCell.appendChild(label);
