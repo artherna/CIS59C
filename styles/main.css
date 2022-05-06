@@ -58,13 +58,11 @@ nav ul li a
 main 
 {
     display: flex;
-    padding-left: 18px;
-    padding-bottom: 18px;
-    padding-right: 18px;
+    padding: 0px 18px 18px;
 }
 main p
 {
-    font-size: 110%;
+    font-size: 120%;
 }
 main h2
 {
@@ -73,7 +71,121 @@ main h2
     padding-top: 12px;
 }
 /* Section Setting Code */
-section { max-width: 475px; }
+section 
+{
+    max-width: 350px;
+}
+/* Aside Setting Code */
+aside 
+{
+    padding-left: 14px;
+    padding-right: 50px;
+}
+aside hr
+{
+    width: 75%;
+    margin: auto;
+}
+/* Classes Setting Codes */
+.index-image 
+{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://253qv1sx4ey389p9wtpp9sj0-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/lviny.jpg);
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.image-text
+{
+    text-align: center;
+    color: white;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+.image-text h1
+{
+    padding-top: 75px;
+    font-size: 75px;
+}
+.image-text hr
+{
+    margin: auto;
+    width: 30%;
+}
+.button 
+{
+    border: none;
+    display: inline-block;
+    text-align: center;
+    background-color: #1e7b1e;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.button:hover 
+{       
+    color: white;
+    background-color: #000000;
+}
+.remainder 
+{
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 25px;
+}
+.center-text
+{
+    text-align: center;
+}
+.column
+{
+    float: left;
+    width: 25%;
+}
+.image-right 
+{
+    float: right;
+    padding: 4px 4px 4px;
+    max-height: 70%;
+    max-width: 40%;
+    border-radius: 20px;
+}
+.image-left 
+{
+    float: left;
+    max-height: 70%;
+    max-width: 40%;
+    border-radius: 10%;
+    padding-right: 16px;
+    padding-bottom: 4px;
+}
+/* More Buttons & Links Codes Below */
+.link
+{
+    font-weight: bold;
+    color: purple;
+}
+.link:hover
+{
+    background-color: white;
+    color: #330080;
+}
+.button2
+{
+    border: none;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: purple;
+}
+.button2:hover 
+{
+    color: white;
+    background-color: #000000;
+}
 /* Footer Settings Code */
 footer
 {
