@@ -1,4 +1,37 @@
-#map {
+#map 
+{
     height: 400px;
     width: 1000px;
+    padding: 18px;
+}
+
+#msg 
+{
+    
+}
+
+#wineries
+{
+    table-layout: auto;
+    width: 150%;
+    float: left;
+    text-align: Left;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#routing
+{
+    max-width: 100%;
+    
+}
+
+#routing td, #routing th
+{
+
+}
+
+section 
+{
+    max-width: 2000px;
 }
