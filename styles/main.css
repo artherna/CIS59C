@@ -79,17 +79,41 @@ section
 aside 
 {
     padding-left: 14px;
-    padding-right: 50px;
+    padding-right: 14px;
 }
 aside hr
 {
     width: 75%;
     margin: auto;
 }
-/* Classes Setting Codes */
-.index-image 
+/* Table Setting Codes Below */
+table 
 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://253qv1sx4ey389p9wtpp9sj0-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/lviny.jpg);
+    display: flex;
+}
+.right-map 
+{
+    padding-left: 150px;
+    max-width: 100%;
+    padding-top: 14px;
+    display: flex;
+}
+.menu 
+{
+    text-align: center;
+    padding-left: 14px;
+    border-spacing: 0px;
+    display: flex;
+}
+
+/* Classes Setting Codes */
+.background-section
+{
+    background-color: #f2f2f2;
+    padding-right: 14px;
+}
+.index-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://media.istockphoto.com/photos/pinot-noir-red-wine-grapes-on-vine-at-winery-picture-id611880220?k=20&m=611880220&s=612x612&w=0&h=mamQ3DFB4k5JEIZcjoN72XWp9CGKapErAGwVvnO1RbY=);
     height: 50%;
     background-position: center;
     background-repeat: no-repeat;
@@ -160,6 +184,35 @@ aside hr
     padding-right: 16px;
     padding-bottom: 4px;
 }
+/* Legend and Form Links Below */
+fieldset
+{
+    padding-bottom: 14px;
+    padding: .5em 1px;
+}
+legend 
+{
+    font-weight: bold;
+    font-size: 125%;
+    margin-bottom: .5em;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+label, input
+{
+    text-align: center;
+    padding: 4px;
+    font-size: 75%;
+}
+label 
+{
+    padding: 4px;
+    font-weight: bold;
+    font-size: 95%;
+}
+
+
+
 /* More Buttons & Links Codes Below */
 .link
 {

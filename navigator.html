@@ -21,40 +21,44 @@
             <li><a href="reservation.html">Reservation</a></li>
         </ul>
     </nav>
-    <!--The div elements for the map and message -->
-    <section>
+
+    
+    <main>
         <table>
             <tr>
-                <td>
+                <td class="right-map">
                     <div id="map"></div>
                     <div id="msg"></div>
                 </td>
-                <td>
+            </tr>
+        </table>
+    </main>
+    <!--The div elements for the map and message -->
+    <section class="background-section">
+        <table>
+            <tr>
+                <td class="menu">
                     <div id="wineries"></div>
                     <div id="routing">
                         <br>
-                        <b>Start:</b>
+                        <b>Start:</b><br />
                         <select id="start">
-                        </select>
-                        <b>End:</b>
+                        </select><br><br>
+                        <b> End:</b><br />
                         <select id="end">
                         </select>
-                        <br>
+                        <br><br>
                         <b>Waypoints:</b> <br />
                         <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br />
                         <select multiple id="waypoints">
                         </select>
-
                     </div>
                 </td>
+                
             </tr>
         </table>
     </section>
-
-    <aside>
-  
-    </aside>
-    
+    <br>
     <!--Load the API from the specified URL -- remember to replace YOUR_API_KEY-->
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsRWvggHgfducouDfiGACfupgqk_o_IAQ&callback=initMap&libraries=places&v=weekly">
