@@ -24,11 +24,27 @@
 
     
     <main>
+        <div id="Instructions">
+            <h2>Livermore Valley Map</h2>
+            <p>
+                To use the livermore winery planner just select the wineries you wish to visit. 
+                Select the Wineries you wish to start and end at on ther right side
+                Select any waypoints in the selection box using ctrl to select multiple.
+                Finally select calculate route to display the route.
+            </p>
+            <br>
+        </div>
         <table>
             <tr>
                 <td class="right-map">
+                    
+                    <br><br>
                     <div id="map"></div>
                     <div id="msg"></div>
+                </td>
+                <td>
+                    <h2>Directions Panel</h2>
+                    <div id="directions-panel"></div>
                 </td>
             </tr>
         </table>
@@ -52,6 +68,8 @@
                         <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br />
                         <select multiple id="waypoints">
                         </select>
+                        <br>
+                        <input type="submit" id="submit" value="Calculate Route"/>
                     </div>
                 </td>
                 
@@ -64,7 +82,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsRWvggHgfducouDfiGACfupgqk_o_IAQ&callback=initMap&libraries=places&v=weekly">
         </script>
     <footer>
-        <p>&copy; 2022 Livermore Valley Winegrowers Association. Responsive Web Design by Group 2</p>
+        <p>&copy; 2022 Las Positas College. Responsive Web Design by CIS59C Group 2</p>
     </footer>
 </body>
 

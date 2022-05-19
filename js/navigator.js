@@ -27,6 +27,7 @@ let wineries = [{ name: 'Boa Ventura De Caires Winery', lat: 37.6622242, lng: -1
 { name: 'Page Mill Winery', lat: 37.6691513, lng: -121.7459135 }, { name: 'Wente Vineyards Tasting Lounge', lat: 37.6233946, lng: -121.7560431 },
 { name: 'Wood Family Vineyards', lat: 37.6753661, lng: -121.7200067 }];
 
+let distMap = new Map();
 
 //Initialize the map using Google Maps API
 function initMap() {
@@ -37,60 +38,59 @@ function initMap() {
     const options = { zoom: 13, scaleControl: true, center: livermore };
     infowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.getElementById('map'), options);
-    //let search = ['Wente Vineyard', 'Mitchel Katz Winery', "Murrieta's Well", 'Concannon Vineyard'];
-    let complete = false
-    console.log("About to Search")
-    let count = 0
-    wineries.forEach(element => {
-        createMarker(element);
+
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+
+    directionsRenderer.setMap(map);
+    document.getElementById("submit").addEventListener("click", () => {
+        calculateAndDisplayRoute(directionsService, directionsRenderer);
     });
 
-
-    function createMarker(place) {
-        //if (!place.geometry || !place.geometry.location) return;
-
-        const marker = new google.maps.Marker({
-            map,
-            position: { lat: place.lat, lng: place.lng },
-        });
-        markers.push(marker);
-        google.maps.event.addListener(marker, "click", () => {
-            infowindow.setContent(place.name || "none");
-            infowindow.open({
-                anchor: marker,
-                map,
-                shouldFocus: false,
-            });
-            let directionsService = new google.maps.DirectionsService();
-            let directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map); // Existing map object displays directions
-            // Create route from existing points used for markers
-            const route = {
-                origin: marker.getPosition(),
-                destination: markers[0].getPosition(),
-                travelMode: 'DRIVING'
-            }
-
-            directionsService.route(route,
-                function (response, status) { // anonymous function to capture directions
-                    if (status !== 'OK') {
-                        window.alert('Directions request failed due to ' + status);
-                        return;
-                    } else {
-                        directionsRenderer.setDirections(response); // Add route to the map
-                        var directionsData = response.routes[0].legs[0]; // Get data about the mapped route
-                        if (!directionsData) {
-                            window.alert('Directions request failed');
-                            return;
-                        }
-                        else {
-                            document.getElementById('msg').innerHTML += " Driving distance is " + directionsData.distance.text + " (" + directionsData.duration.text + ").";
-                        }
-                    }
-                });
-        });
-    }
 }
+
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+    const waypts = [];
+    const checkboxArray = document.getElementById("waypoints");
+  
+    for (let i = 0; i < checkboxArray.length; i++) {
+      if (checkboxArray.options[i].selected) {
+        waypts.push({
+          location: checkboxArray[i].value,
+          stopover: true,
+        });
+      }
+    }
+  
+    directionsService
+      .route({
+        origin: document.getElementById("start").value,
+        destination: document.getElementById("end").value,
+        waypoints: waypts,
+        optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.DRIVING,
+      })
+      .then((response) => {
+        directionsRenderer.setDirections(response);
+  
+        const route = response.routes[0];
+        const summaryPanel = document.getElementById("directions-panel");
+  
+        summaryPanel.innerHTML = "";
+  
+        // For each route, display summary information.
+        for (let i = 0; i < route.legs.length; i++) {
+          const routeSegment = i + 1;
+  
+          summaryPanel.innerHTML +=
+            "<b>Route Segment: " + routeSegment + "</b><br>";
+          summaryPanel.innerHTML += route.legs[i].start_address + " to ";
+          summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+          summaryPanel.innerHTML += route.legs[i].distance.text + "<br><br>";
+        }
+      })
+      .catch((e) => window.alert("Directions request failed due to " + e));
+  }
 
 //Reset all the checkboxs and drop down options
 var resetCheckBox = function () {
@@ -170,13 +170,6 @@ var genCheckboxField = function () {
     //create the buttons for reset,calculate route and add all elements to the DOM
     $("wineries").appendChild(displayTable);
     var button = document.createElement('input');
-    button.type = "button"
-    button.id = "navigate";
-    button.value = "Calculate Route"
-    $("wineries").appendChild(button);
-    //$("navigate").onclick = calculatetrack;
-
-    button = document.createElement('input');
     button.type = "button"
     button.id = "reset";
     button.value = "Reset"
