@@ -5,7 +5,7 @@ function validateForm() {
         alert('Name is required!');
         return false;
     }
-    if ($('data_4').value.trim().length != 0 && !regexphoneus.test($('data_5').value.trim())) {
+    if ($('data_4').value.trim().length != 0 && !regexphoneus.test($('data_4').value.trim())) {
         $("phone_err").firstChild.nodeValue = " Invalid Phone number: xxx-xxx-xxxx"
         return false;
     }
