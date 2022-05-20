@@ -19,7 +19,7 @@ function validateForm() {
     }
 
     var now = new Date();
-    now.setHours(0,0,0,0);
+    now.setHours(0, 0, 0, 0);
     var given = new Date($("data_6").value)
     let diff = new Date().getTime() - given.getTime();
     if (diff > 0) {

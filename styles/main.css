@@ -214,6 +214,45 @@ legend
     padding-left: 4px;
     padding-right: 4px;
 }
+
+figcaption {
+    font-size: 150%;
+    color: purple;
+    padding-top: 12px;
+}
+
+.anita table {
+    border: 1px solid purple;
+    border-collapse: collapse;
+    background-color: aliceblue;
+}
+
+.anita th {
+    border: 1px solid purple;
+    border-collapse: collapse;
+    background-color: aliceblue;
+}
+
+.anita td {
+    border: 1px solid purple;
+    border-collapse: collapse;
+    background-color: aliceblue;
+    padding: 4px;
+}
+
+ul {
+    list-style-position: inside;
+    padding: 5px;
+}
+
+.style_circle {
+    list-style-type: circle;
+}
+
+.center_info {
+    margin-left: auto;
+    margin-right: auto;
+}
 /* More Buttons & Links Codes Below */
 .link
 {
