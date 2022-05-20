@@ -1,8 +1,3 @@
-let favorites = []
-
-var $ = function (id) {
-    return document.getElementById(id);
-}
 
 function validateForm() {
     var regexphoneus = /^(\d{3})-(\d{3})-(\d{4})/
@@ -18,17 +13,34 @@ function validateForm() {
         alert('Email must be a valid email address!');
         return false;
     }
-    if (isEmpty($('data_6').value.trim())) {
+    if (isEmpty($('data_6').value)) {
         alert('Date is required!');
         return false;
     }
-    if (isEmpty($('data_7').value.trim())) {
+
+    var now = new Date();
+    now.setHours(0,0,0,0);
+    var given = new Date($("data_6").value)
+    let diff = new Date().getTime() - given.getTime();
+    if (diff > 0) {
+        $("date_err").firstChild.nodeValue = " Date happens in the past"
+        return
+    }
+
+    if (isEmpty($('data_7').value)) {
         alert('Time is required!');
         return false;
     }
-
-    $("reservation_form").submit(); 
-
+    let fav = $("winery").value;
+    if (favorites.indexOf(fav) == -1) {
+        favorites.push(fav);
+        setStorage("favorite_wineries", favorites);
+    }
+    if (reservations.indexOf(fav) == -1) {
+        reservations.push(fav);
+        setStorage("reserved_wineries", reservations);
+    }
+    $("reservation_form").submit();
 }
 
 function isEmpty(str) { return (str.length === 0 || !str.trim()); }
@@ -38,17 +50,12 @@ function validateEmail(email) {
     return isEmpty(email) || re.test(email);
 }
 
-var setFavorites = function () {
-    if (favorites.length === 0) {
-        favorites = getStorage("favorite_wineries");
-    }
-    favorites.forEach(w => {
-        $("winery").add(new Option(w));
-    });
-}
 
 window.onload = function () {
-    setFavorites()
+    sortWinery()
+    wineries.forEach(w => {
+        $("winery").add(new Option(w.name));
+    });
     $("Submit").onclick = validateForm;
     //initMap()
 }

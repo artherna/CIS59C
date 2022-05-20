@@ -185,6 +185,7 @@ table
     padding-right: 16px;
     padding-bottom: 4px;
 }
+
 /* Legend and Form Links Below */
 fieldset
 {
@@ -205,11 +206,13 @@ label, input
     padding: 4px;
     font-size: 75%;
 }
-label 
+legend 
 {
-    padding: 4px;
     font-weight: bold;
-    font-size: 95%;
+    font-size: 125%;
+    margin-bottom: .5em;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 /* More Buttons & Links Codes Below */
 .link

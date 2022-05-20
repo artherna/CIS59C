@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="images/wine_glasses_icon.png">
     <link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/reservation.css">
+	<script src="js/resources.js"></script>
 	<script src="js/reservation.js"></script>
     <script src="js/library_storage.js"></script>
 	
@@ -26,62 +27,87 @@
     </nav>
 
     <main>
-        <section>
-            <h2>Want to Reserve a Date?</h2>
-            <p>
-                Say no more!<br>
-                Here you are able to click and reserve a date for you to come on down and visit. 
-            </p>
-
-        </section>
+		<section>
+			<h2>Want to Reserve a Date?</h2>
+			<p>
+				Say no more!<br>
+				Here you are able to click and reserve a date for you to come on down and visit.
+				<br><br>
+				Under the Table Reservation panel, please be sure to fill out all forms that require the information needed
+				in order to make a reservation. <br><br>
+				Information that is required will be followed with a red star nearby.
+			</p>
+			<br>
+			<h2>Viewing your Destination</h2>
+			<p>
+				Getting lost on where to find the best wineries?<br>
+				Want to view the best route to take you to the winery?<br><br>
+				Due to the wide variety of wineries occupying Livermore, we understand that sometimes you need to double-check
+				where you're heading on over here before leaving your home to visit us. Or just want to learn more about us and 
+                our wineries to figure out where you want to visit.<br><br>
+				Be sure to <a class="link" href="navigator.html">click here</a> to view all the wineries before making your trip.
+			</p>
+		</section>
 
         <aside>
 			<h2>Table Reservation</h2>
 			<p>
-				We would can't wait to see you there!
+				Please be sure to fill out all information required.
 			</p>
 			
-			<form id="reservation_form" method="post" action="submission.html" method="get">
-				<div style="width: 400px;">
-				</div>
-				<div>Name<span> *</span><br/>
-				<input type="text" id="data_3" name="data_3" class="form-control"/>
-				</div>
-				<div>Phone<span id="phone_err"> </span><br/>
-				<input type="text" id="data_4" name="data_4" class="form-control"/>
-				</div>
-				<div>Email<br/>
-				<input type="text" id="data_5" name="data_5" class="form-control"/>
-				</div>
-				<div>Date<span> *</span><br/>
-				<input type="text" id="data_6" name="data_6" class="form-control"/>
-				</div>
+            <form id="reservation_form" method="post" action="submission.html">
+                <div style="width: 400px;">
+                </div>
+                <div class="bold">
+                    Name:<span> *</span><br />
+                    <input type="text" id="data_3" name="data_3" class="form-control" />
+                </div>
+                <div class="bold">
+                    Phone:<span id="phone_err"> </span><br />
+                    <input type="text" id="data_4" name="data_4" class="form-control" />
+                </div>
+                <div class="bold">
+                    Email:<br />
+                    <input type="text" id="data_5" name="data_5" class="form-control" />
+                </div>
+                <div class="bold">
+                    Date:<span id="date_err"> *</span><br />
+                    <input type="date" id="data_6" name="data_6" class="form-control" />
+                </div>
 
-				<div>Time<span> *</span><br/>
-				<input type="text" id="data_7" name="data_7" class="form-control"/>
-				</div>
-				<div>Number of Attendees<span> *</span><br/>
-				<select id="data_8" name="data_8" class="form-control"><option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-				<option>6</option>
-				<option>7</option>
-				<option>8</option>
-				<option>9</option>
-				<option>10</option>
-				<option>10+ (Specify in Comments)</option>
-				</select>
-				</div>
-				<select id="winery">
-				</select><br><br>
-				<div>In order, what are your preferred wineries?<br/>
-				<textarea id="data_9" false name="data_9"  rows="6" class="form-control"></textarea>
-				</div>
-				<div><input name="Submit" id="Submit" value="Submit"/></div>
+                <div class="bold">
+                    Time:<span> *</span><br />
+                    <input type="time" id="data_7" name="data_7" min="09:00" max="18:00" required class="form-control" />
+                </div>
+                <div class="bold">
+                    Number of Attendees:<span> *</span><br />
+                    <select id="data_8" name="data_8" class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>10+ (Specify in Comments)</option>
+                    </select>
+                </div>
+                <div class="bold">
+                    Winery of Choice: <br />
+                    <select id="winery">
+                    </select>
+                </div>
+                <br>
+                <div class="bold">
+                    In order, what are your preferred wineries?<br />
+                    <textarea id="data_9" rows="6" class="form-control"></textarea>
+                </div>
+                <div class="bold"><input name="Submit" id="Submit" value="Submit" /></div>
 
-				</form>
+            </form>
 
         </aside>
     </main>

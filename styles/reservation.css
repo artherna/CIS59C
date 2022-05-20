@@ -1,15 +1,26 @@
-div {
+div 
+{
     padding-bottom: 18px;
 }
 
-span{
+span
+{
     color: red;
 }
 
-input {
+
+input 
+{
     width : 400px;
 }
 
-textarea {
+textarea 
+{
     width : 400px;
+}
+
+.bold
+{
+    font-weight: bold;
+    font-size: 120%;
 }
