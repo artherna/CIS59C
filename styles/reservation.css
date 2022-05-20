@@ -1,0 +1,15 @@
+div {
+    padding-bottom: 18px;
+}
+
+span{
+    color: red;
+}
+
+input {
+    width : 400px;
+}
+
+textarea {
+    width : 400px;
+}

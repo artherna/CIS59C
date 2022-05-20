@@ -6,6 +6,9 @@
     <title>Livermore Wineries</title>
     <link rel="shortcut icon" href="images/wine_glasses_icon.png">
     <link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/reservation.css">
+	<script src="js/reservation.js"></script>
+    <script src="js/library_storage.js"></script>
 	
 
 </head>
@@ -17,7 +20,6 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="wineries.html">Wineries</a></li>
             <li><a href="navigator.html">Navigation</a></li>
             <li><a href="reservation.html">Reservation</a></li>
         </ul>
@@ -34,56 +36,32 @@
         </section>
 
         <aside>
-			<script type="text/javascript">
-				function validateForm() {
-				if (isEmpty(document.getElementById('data_3').value.trim())) {
-				alert('Name is required!');
-				return false;
-				}
-				if (!validateEmail(document.getElementById('data_5').value.trim())) {
-				alert('Email must be a valid email address!');
-				return false;
-				}
-				if (isEmpty(document.getElementById('data_6').value.trim())) {
-				alert('Date is required!');
-				return false;
-				}
-				if (isEmpty(document.getElementById('data_7').value.trim())) {
-				alert('Time is required!');
-				return false;
-				}
-				return true;
-				}
-				function isEmpty(str) { return (str.length === 0 || !str.trim()); }
-				function validateEmail(email) {
-				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,15}(?:\.[a-z]{2})?)$/i;
-				return isEmpty(email) || re.test(email);
-				}
-			</script>
+			<h2>Table Reservation</h2>
+			<p>
+				We would can't wait to see you there!
+			</p>
 			
-			<form method="post" action="submit" onSubmit="return validateForm();">
+			<form id="reservation_form" method="post" action="submission.html" method="get">
 				<div style="width: 400px;">
 				</div>
-				<div style="padding-bottom: 18px;font-size : 24px;">Table Reservation</div>
-				<div style="padding-bottom: 18px;font-size : 18px;">We would be glad to reserve a table for you at our restaurant!</div>
-				<div style="padding-bottom: 18px;">Name<span style="color: red;"> *</span><br/>
-				<input type="text" id="data_3" name="data_3" style="width : 400px;" class="form-control"/>
+				<div>Name<span> *</span><br/>
+				<input type="text" id="data_3" name="data_3" class="form-control"/>
 				</div>
-				<div style="padding-bottom: 18px;">Phone<br/>
-				<input type="text" id="data_4" name="data_4" style="width : 400px;" class="form-control"/>
+				<div>Phone<span id="phone_err"> </span><br/>
+				<input type="text" id="data_4" name="data_4" class="form-control"/>
 				</div>
-				<div style="padding-bottom: 18px;">Email<br/>
-				<input type="text" id="data_5" name="data_5" style="width : 400px;" class="form-control"/>
+				<div>Email<br/>
+				<input type="text" id="data_5" name="data_5" class="form-control"/>
 				</div>
-				<div style="padding-bottom: 18px;">Date<span style="color: red;"> *</span><br/>
-				<input type="text" id="data_6" name="data_6" style="width : 250px;" class="form-control"/>
+				<div>Date<span> *</span><br/>
+				<input type="text" id="data_6" name="data_6" class="form-control"/>
 				</div>
 
-				<div style="padding-bottom: 18px;">Time<span style="color: red;"> *</span><br/>
-				<input type="text" id="data_7" name="data_7" style="width : 250px;" class="form-control"/>
+				<div>Time<span> *</span><br/>
+				<input type="text" id="data_7" name="data_7" class="form-control"/>
 				</div>
-				<div style="padding-bottom: 18px;">Number of Attendees<span style="color: red;"> *</span><br/>
-				<select id="data_8" name="data_8" style="width : 250px;" class="form-control"><option>1</option>
+				<div>Number of Attendees<span> *</span><br/>
+				<select id="data_8" name="data_8" class="form-control"><option>1</option>
 				<option>2</option>
 				<option>3</option>
 				<option>4</option>
@@ -96,10 +74,12 @@
 				<option>10+ (Specify in Comments)</option>
 				</select>
 				</div>
-				<div style="padding-bottom: 18px;">In order, what are your preferred wineries?<br/>
-				<textarea id="data_9" false name="data_9" style="width : 400px;" rows="6" class="form-control"></textarea>
+				<select id="winery">
+				</select><br><br>
+				<div>In order, what are your preferred wineries?<br/>
+				<textarea id="data_9" false name="data_9"  rows="6" class="form-control"></textarea>
 				</div>
-				<div style="padding-bottom: 18px;"><input name="skip_Submit" value="Submit" type="submit"/></div>
+				<div><input name="Submit" id="Submit" value="Submit"/></div>
 
 				</form>
 

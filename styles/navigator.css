@@ -1,13 +1,14 @@
 #map 
 {
-    height: 400px;
-    width: 1000px;
+    display: flex;
+    width: 950px;
+    height: 450px;
     padding: 18px;
 }
 
 #msg 
 {
-    
+    display: flex;
 }
 
 #wineries

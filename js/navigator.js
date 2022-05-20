@@ -13,8 +13,8 @@ let wineries = [{ name: 'Boa Ventura De Caires Winery', lat: 37.6622242, lng: -1
 { name: 'Ehrenberg Cellars', lat: 37.6972639, lng: -121.8154042 }, { name: 'Concannon Vineyard', lat: 37.6670827, lng: -121.7397954 },
 { name: 'Darcie Kent Vineyards', lat: 37.6659675, lng: -121.7061218 }, { name: 'Cuda Ridge Wines', lat: 37.6547921, lng: -121.7668362 },
 { name: 'Del Valle Winery', lat: 37.6658241, lng: -121.7336671 }, { name: 'Eagle Ridge Vineyard', lat: 37.653502, lng: -121.672361 },
-{ name: 'Favalora Vineyards Winery', lat: 37.6764357, lng: -121.7191618 }, { name: 'El Sol', lat: 37.6879021, lng: -121.6875288 },
-{ name: 'Crooked Vine Vineyard and Winery', lat: 45.429022, lng: -84.773046 }, { name: 'Dante Robere Vineyards', lat: 37.6456844, lng: -121.7821115 },
+{ name: 'Favalora Vineyards Winery', lat: 37.6764357, lng: -121.7191618 }, { name: 'El Sol Winery', lat: 37.6879021, lng: -121.6875288 },
+{ name: 'Stony Ridge Winery', lat: 37.649511, lng: -121.696887 }, { name: 'Dante Robere Vineyards', lat: 37.6456844, lng: -121.7821115 },
 { name: 'Fenestra Winery', lat: 37.6418073, lng: -121.7959684 }, { name: 'Mitchell Katz Winery', lat: 37.666449, lng: -121.719954 },
 { name: 'McGrail Vineyards and Winery', lat: 37.6503411, lng: -121.6950897 }, { name: 'Longevity Wines Inc', lat: 37.6759437, lng: -121.7192298 },
 { name: 'Las Positas Vineyards', lat: 37.6458024, lng: -121.7704979 }, { name: 'Leisure Street Winery', lat: 37.66257, lng: -121.683039 },
@@ -26,8 +26,7 @@ let wineries = [{ name: 'Boa Ventura De Caires Winery', lat: 37.6622242, lng: -1
 { name: 'Paulsen Wines', lat: 37.6646371, lng: -121.7310154 }, { name: 'The Lineage Wine Collection', lat: 37.664289, lng: -121.728086 },
 { name: 'Page Mill Winery', lat: 37.6691513, lng: -121.7459135 }, { name: 'Wente Vineyards Tasting Lounge', lat: 37.6233946, lng: -121.7560431 },
 { name: 'Wood Family Vineyards', lat: 37.6753661, lng: -121.7200067 }];
-
-let distMap = new Map();
+let favorites = []
 
 //Initialize the map using Google Maps API
 function initMap() {
@@ -102,6 +101,7 @@ var resetCheckBox = function () {
             addRemoveOptions("waypoints", true, $(`w${i}`).value)
         }
     }
+    clearStorage("favorite_wineries")
 }
 
 
@@ -112,14 +112,25 @@ var addRemoveOptions = function (select, remove, value) {
         for (var i = 0; i < $(select).length; i++) {
             if ($(select).options[i].value == value)
                 $(select).remove(i);
+                if (select=="start"){
+                    deleteFavorite(value)
+                }
         }
         return
     }
     $(select).add(new Option(value));
+    if (select=="start"){
+        favorites.push(value);
+        setStorage("favorite_wineries", favorites);
+    }
 }
 
 // Generate all the checkboxes from the winery list
 var genCheckboxField = function () {
+    if (favorites.length === 0) {
+        favorites = getStorage("favorite_wineries");
+    }
+    sortWinery(wineries)
     let l1 = document.createElement("label")
     l1.innerHTML = "Winery List"
     $("wineries").appendChild(l1);
@@ -175,6 +186,24 @@ var genCheckboxField = function () {
     button.value = "Reset"
     $("wineries").appendChild(button);
     $("reset").onclick = resetCheckBox;
+}
+
+var sortWinery = function() {
+    wineries.sort(function(a, b) {
+        if (a.name.toLocaleLowerCase() == b.name.toLocaleLowerCase()) {return 0}
+        var orderBool = a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase();
+        return orderBool ? 1 : -1;
+      });
+};
+
+var deleteFavorite = function(value){
+    for(var i =0;i<favorites.length;i++){
+        if (favorites[i] == value){
+            favorites.splice(i,1);
+            break;
+        }
+    }
+    setStorage("favorite_wineries", favorites);
 }
 
 window.onload = function () {

@@ -2,10 +2,13 @@
 <html>
 
 <head>
+    <meta charset="utf-8" />
+    <title>Livermore Wineries</title>
     <link rel="shortcut icon" href="images/wine_glasses_icon.png">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/navigator.css">
     <script src="js/navigator.js"></script>
+    <script src="js/library_storage.js"></script>
 </head>
 
 <body>
@@ -16,7 +19,6 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="wineries.html">Wineries</a></li>
             <li><a href="navigator.html">Navigation</a></li>
             <li><a href="reservation.html">Reservation</a></li>
         </ul>
@@ -24,30 +26,35 @@
 
     
     <main>
-        <div id="Instructions">
-            <h2>Livermore Valley Map</h2>
-            <p>
-                To use the livermore winery planner just select the wineries you wish to visit. 
-                Select the Wineries you wish to start and end at on ther right side
-                Select any waypoints in the selection box using ctrl to select multiple.
-                Finally select calculate route to display the route.
-            </p>
-            <br>
-        </div>
-        <table>
-            <tr>
-                <td class="right-map">
-                    
-                    <br><br>
-                    <div id="map"></div>
-                    <div id="msg"></div>
-                </td>
-                <td>
-                    <h2>Directions Panel</h2>
-                    <div id="directions-panel"></div>
-                </td>
-            </tr>
-        </table>
+        <section>
+            <div id="Instructions">
+                <h2>Livermore Valley Map</h2>
+                <p>
+                    To use the livermore winery planner just select the wineries you wish to visit.<br><br>
+                    Select the Wineries you wish to start and end at on ther right side.<br>
+                    Select any waypoints in the selection box using ctrl to select multiple.<br>
+                    Finally select calculate route to display the route.
+                </p>
+                <br>
+                <h2>Directions Panel</h2>
+                <div id="directions-panel"></div>
+            </div>
+            
+        </section>
+
+        <aside>
+
+            <table>
+                <tr>
+                    <td>
+                        <br><br>
+                        <div id="map"></div>
+                        <div id="msg"></div>
+                    </td>
+                </tr>
+            </table>
+        </aside>
+        
     </main>
     <!--The div elements for the map and message -->
     <section class="background-section">

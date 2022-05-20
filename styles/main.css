@@ -71,7 +71,10 @@ main h2
     padding-top: 12px;
 }
 /* Section Setting Code */
-W
+section 
+{
+    max-width: 350px;
+}
 /* Aside Setting Code */
 aside 
 {
@@ -166,11 +169,12 @@ table
 }
 .image-right 
 {
-    float: right;
-    padding: 4px 4px 4px;
     max-height: 70%;
     max-width: 40%;
-    border-radius: 20px;
+    border-radius: 10%;
+    padding-right: 16px;
+    padding-bottom: 4px;
+    float: right;
 }
 .image-left 
 {
@@ -207,9 +211,6 @@ label
     font-weight: bold;
     font-size: 95%;
 }
-
-
-
 /* More Buttons & Links Codes Below */
 .link
 {
